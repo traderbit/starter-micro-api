@@ -1,8 +1,11 @@
 const express = require('express');
 const app = express();
 const port = 3000;
+const JSONdb = require('simple-json-db');
+const db = new JSONdb('./config.json');
 
-app.get('/download', (req, res) => {
+app.get('/', (req, res) => {
+  db.set('key', 'value');
   res.send('Hello World!')
 })
 
