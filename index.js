@@ -38,15 +38,12 @@ app.get('/d/:file', function async(req, res) {
             // res.setHeader('Content-disposition', 'attachment; filename=' + req.params.file);
             // res.setHeader('Content-Type', contentType);
             //request(url).pipe(res);
-              // Perform GET request using superagent
-    const response = await request.get(url);
+            res.set(
+     'Content-Disposition',
+     'attachment; filename='+req.params.file
+   );
 
-    // Set headers for file download
-    res.setHeader('Content-disposition', 'attachment; filename='+req.params.file); // Replace 'file_name_to_download.ext' with the desired file name and extension
-    res.setHeader('Content-Type', response.type); // Set the content type based on the response
-
-    // Stream the file to the response object
-    response.pipe(res);
+   request(url).pipe(res);
         } else {
             res.json({ 'success': false });
         }
