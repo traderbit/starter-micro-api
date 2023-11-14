@@ -20,7 +20,7 @@
     <div class="mb-3">
   <label for="url" class="form-label">URL</label>
   <input type="text" class="form-control" name="url" placeholder="URL">
-      <button type="submit" class="btn btn-primary">Download</button>
+      <button type="submit" class="btn btn-primary mt-2">Download</button>
     </form>
 </div>
   </div>
@@ -33,10 +33,9 @@
         $(document).on('submit', 'form[name="download"]', function(e){
             e.preventDefault();
             const form = $(e.target);
-          alert('Submitted');
-            // $.post( form.attr("action"), form.serialize(), function(res){
-            //     console.log(res);
-            // });
+            $.post( form.attr('action'), form.serialize(), function(res){
+                console.log(res);
+            });
         });
 </script>
   </body>
