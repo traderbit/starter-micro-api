@@ -33,7 +33,7 @@ app.get('/file/:file', function async(req, res) {
 app.get('/d/:file', function async(req, res) {
   try {
     const url = API+'/file/'+req.params.file;
-        getContentTpeFromURL(url, (contentType) => {
+        getContentTpeFromURL(url, async(contentType) => {
         if (contentType) {
             res.setHeader('Content-disposition', 'attachment; filename=' + req.params.file);
             res.setHeader('Content-Type', contentType);
