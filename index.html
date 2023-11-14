@@ -55,7 +55,7 @@
               $('div.caption').html(results.caption);
                 results.results.forEach((result) => {
                   let thumbnail = result.is_video ? result.thumbnail : result.url;
-                  let rendered = Mustache.render(template, { image: thumbnail, url: result.url });
+                  let rendered = Mustache.render(template, { image: 'https://igdwn.cyclic.app/file/'+thumbnail, url: 'https://igdwn.cyclic.app/file/'+result.url });
                   output += rendered;
 });
               $('div.results').html(output);
