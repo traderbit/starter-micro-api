@@ -31,6 +31,7 @@ app.get('/file/:file', function async(req, res) {
 });
 
 app.get('/d/:file', function async(req, res) {
+  try {
     const url = API+'/file/'+req.params.file;
         getContentTpeFromURL(url, (contentType) => {
         if (contentType) {
@@ -41,6 +42,9 @@ app.get('/d/:file', function async(req, res) {
             res.json({ 'success': false });
         }
     });
+  } catch (error) {
+    res.send(error.message);
+  }
 });
 
 app.post('/download', async(req, res) => {
