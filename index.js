@@ -11,7 +11,8 @@ app.get('/', (req, res) => {
 });
 
 app.post('/download', (req, res) => {
-  console.log(res);
+  const { url } = req.body;
+    console.log(url);
     res.json({'success' : true});
 });
 
