@@ -54,7 +54,8 @@
               let output = '';
               $('div.caption').html(results.caption);
                 results.results.forEach((result) => {
-                  let rendered = Mustache.render(template, { image: result.pl, url: result.url });
+                  let thumbnail = result.is_video ? result.thumbnail : result.url;
+                  let rendered = Mustache.render(template, { image: thumbnail, url: result.url });
                   output += rendered;
 });
               $('div.results').html(output);
