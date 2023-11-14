@@ -35,9 +35,9 @@ app.get('/d/:file', function async(req, res) {
     const url = API+'/file/'+req.params.file;
         getContentTpeFromURL(url, (contentType) => {
         if (contentType) {
-            // res.setHeader('Content-disposition', 'attachment; filename=' + req.params.file);
-            // res.setHeader('Content-Type', contentType);
-            // request(url).pipe(res);
+            res.setHeader('Content-disposition', 'attachment; filename=' + req.params.file);
+            res.setHeader('Content-Type', contentType);
+            request(url).pipe(res);
           res.send('SLAS'+req.params.file+contentType);
         } else {
             res.json({ 'success': false });
