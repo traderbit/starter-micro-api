@@ -14,6 +14,13 @@ app.get('/', (req, res) => {
     res.sendfile('./index.html');
 });
 
+app.get('/file/:file', function async(req, res) {
+    const filePath = req.params.file;
+    const contentType = mime.getType(filePath);
+    res.setHeader('Content-Type', contentType);
+    res.sendFile(filePath);
+});
+
 app.post('/download', async(req, res) => {
   const { url } = req.body;
       try {
