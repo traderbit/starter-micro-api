@@ -21,7 +21,7 @@ app.post('/download', async(req, res) => {
     res.json(response.data);
   } catch (error) {
     // Handle errors
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({ error: error.message });
   }
 });
 
