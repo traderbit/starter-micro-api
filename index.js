@@ -5,6 +5,7 @@ const axios = require('axios');
 const request = require('superagent');
 const https = require('https');
 const mime = require('mime');
+const API = process.env.API;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -18,7 +19,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/file/:file', function async(req, res) {
-    const url = 'https://fobrcb-ip-103-38-69-232.tunnelmole.net/file/'+req.params.file;
+    const url = API+'/file/'+req.params.file;
         getContentTpeFromURL(url, (contentType) => {
         if (contentType) {
             res.setHeader('Content-Type', contentType);
@@ -32,7 +33,7 @@ app.get('/file/:file', function async(req, res) {
 app.post('/download', async(req, res) => {
   const { url } = req.body;
       try {
-    const apiUrl = 'https://fobrcb-ip-103-38-69-232.tunnelmole.net/fetch/'+url; // Replace with your API endpoint
+    const apiUrl = API+'/fetch/'+url;
     const response = await axios.get(apiUrl);
     res.json(response.data);
   } catch (error) {
