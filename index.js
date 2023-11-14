@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const port = 3000;
 const axios = require('axios');
+const mime = require('mime');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
