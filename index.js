@@ -7,7 +7,7 @@ app.get('/a', (req, res) => {
 })
 
 app.get('/', (req, res) => {
-    res.sendfile(__dirname + './index.html');
+    res.sendfile('./index.html');
 });
 
 app.listen(port, () => {
