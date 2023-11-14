@@ -39,7 +39,7 @@ app.get('/d/:file', function async(req, res) {
             res.setHeader('Content-Type', contentType);
             //request(url).pipe(res);
           const response = await request.get(url);
-          response.body.pipe(res);
+          response.req.pipe(res);
         } else {
             res.json({ 'success': false });
         }
