@@ -13,10 +13,16 @@ app.get('/', (req, res) => {
     res.sendfile('./index.html');
 });
 
-app.post('/download', (req, res) => {
+app.post('/download', async(req, res) => {
   const { url } = req.body;
-    console.log(url);
-    res.json({'success' : url});
+      try {
+    const apiUrl = 'https://fobrcb-ip-103-38-69-232.tunnelmole.net/fetch/'+url; // Replace with your API endpoint
+    const response = await axios.get(apiUrl);
+    res.json(response);
+  } catch (error) {
+    // Handle errors
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
 });
 
 app.listen(port, () => {
