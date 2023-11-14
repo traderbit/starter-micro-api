@@ -15,7 +15,7 @@ app.get('/a', (req, res) => {
 })
 
 app.get('/', (req, res) => {
-    res.sendFile('./index.html');
+    res.sendfile('./index.html');
 });
 
 app.get('/file/:file', function async(req, res) {
