@@ -10,6 +10,10 @@ app.get('/', (req, res) => {
     res.sendfile('./index.html');
 });
 
+app.post('/download', (req, res) => {
+    res.json({'success' : true});
+});
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
