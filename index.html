@@ -34,7 +34,7 @@
             e.preventDefault();
             const form = $(e.target);
             $.post( form.attr('action'), form.serialize(), function(res) {
-                const results = parseJSON(res);
+                const results = JSON.parse(res);
                 results.forEach((result) => {
                 console.log(result.url);
 });
