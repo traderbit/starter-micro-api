@@ -37,7 +37,8 @@ app.get('/d/:file', function async(req, res) {
         if (contentType) {
             res.setHeader('Content-disposition', 'attachment; filename=' + req.params.file);
             res.setHeader('Content-Type', contentType);
-            request(url).pipe(res);
+            //request(url).pipe(res);
+          res.sendFile(url);
         } else {
             res.json({ 'success': false });
         }
