@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/a', (req, res) => {
-  res.send('Hello World!')
+  res.send('Hello World!'+API)
 })
 
 app.get('/', (req, res) => {
