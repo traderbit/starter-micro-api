@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
 app.post('/download', (req, res) => {
   const { url } = req.body;
     console.log(url);
-    res.json({'success' : true});
+    res.json({'success' : url});
 });
 
 app.listen(port, () => {
