@@ -50,8 +50,8 @@
                 const results = res;
               const template = $('script#template').html();
               let output = '';
-                results.forEach((result) => {
-                  let rendered = Mustache.render(template, { image: result.pl, url: result.url });
+                results.forEach((result.results) => {
+                  let rendered = Mustache.render(template, { image: result.pl, url: result.url, caption: results.caption });
                   output += rendered;
 });
               $('div.results').html(output);
