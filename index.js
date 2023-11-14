@@ -35,11 +35,18 @@ app.get('/d/:file', function async(req, res) {
     const url = API+'/file/'+req.params.file;
         getContentTpeFromURL(url, async(contentType) => {
         if (contentType) {
-            res.setHeader('Content-disposition', 'attachment; filename=' + req.params.file);
-            res.setHeader('Content-Type', contentType);
+            // res.setHeader('Content-disposition', 'attachment; filename=' + req.params.file);
+            // res.setHeader('Content-Type', contentType);
             //request(url).pipe(res);
-          const response = await request.get(url);
-          response.req.pipe(res);
+              // Perform GET request using superagent
+    const response = await request.get(url);
+
+    // Set headers for file download
+    res.setHeader('Content-disposition', 'attachment; filename='+req.params.file); // Replace 'file_name_to_download.ext' with the desired file name and extension
+    res.setHeader('Content-Type', response.type); // Set the content type based on the response
+
+    // Stream the file to the response object
+    response.pipe(res);
         } else {
             res.json({ 'success': false });
         }
