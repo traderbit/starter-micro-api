@@ -25,7 +25,10 @@
 </div>
   </div>
 </div>
-        <div class="col-12 results mt-2"></div>
+        <div class="col-12 mt-2">
+          <div class="caption"></div>
+          <div class="results"></div>
+        </div>
       </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -36,7 +39,6 @@
       <div class="card" style="width: 18rem;">
   <img src="data:image/png;base64,{{image}}" class="card-img-top" alt="...">
   <div class="card-body">
-    <h5 class="card-title">Card title</h5>
     <a href="{{url}}" class="btn btn-primary">Download</a>
   </div>
 </div>
@@ -50,8 +52,9 @@
                 const results = res;
               const template = $('script#template').html();
               let output = '';
+              $('div.caption').html(results.caption);
                 results.results.forEach((result) => {
-                  let rendered = Mustache.render(template, { image: result.pl, url: result.url, caption: results.caption });
+                  let rendered = Mustache.render(template, { image: result.pl, url: result.url });
                   output += rendered;
 });
               $('div.results').html(output);
