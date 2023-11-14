@@ -51,8 +51,8 @@
               const template = $('script#template').html();
               let output = '';
                 results.forEach((result) => {
-                  const rendered = Mustache.render(template, { image: result.pl, url: result.url });
-                  output += = rendered;
+                  let rendered = Mustache.render(template, { image: result.pl, url: result.url });
+                  output += rendered;
 });
               $('div.results').html(output);
             });
