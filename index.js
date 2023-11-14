@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const port = 3000;
 const axios = require('axios');
+const https = require('https');
 const mime = require('mime');
 
 app.use(express.json());
@@ -16,10 +17,15 @@ app.get('/', (req, res) => {
 });
 
 app.get('/file/:file', function async(req, res) {
-    const filePath = 'https://fobrcb-ip-103-38-69-232.tunnelmole.net/file/'+req.params.file;
-    const contentType = mime.getType(filePath);
-    res.setHeader('Content-Type', contentType);
-    res.sendFile(filePath);
+    const url = 'https://fobrcb-ip-103-38-69-232.tunnelmole.net/file/'+req.params.file;
+        getContentTpeFromURL(url, (contentType) => {
+        if (contentType) {
+            res.setHeader('Content-Type', contentType);
+            request(url).pipe(res);
+        } else {
+            res.json({ 'success': false });
+        }
+    });
 });
 
 app.post('/download', async(req, res) => {
@@ -33,6 +39,23 @@ app.post('/download', async(req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
+function getContentTpeFromURL(url, callback) {
+    const protocol = https;
+
+    protocol.get(url, (response) => {
+        if (response.statusCode === 200) {
+            const contentType = response.headers['content-type'];
+            callback(contentType);
+        } else {
+            console.error(`Error: Status code ${response.statusCode}`);
+            callback(null); // Return null in case of an error
+        }
+    }).on('error', (error) => {
+        console.error('Error:', error.message);
+        callback(null); // Return null in case of an error
+    });
+}
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
