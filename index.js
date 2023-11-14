@@ -35,15 +35,9 @@ app.get('/d/:file', function async(req, res) {
     const url = API+'/file/'+req.params.file;
         getContentTpeFromURL(url, async(contentType) => {
         if (contentType) {
-            // res.setHeader('Content-disposition', 'attachment; filename=' + req.params.file);
-            // res.setHeader('Content-Type', contentType);
-            //request(url).pipe(res);
-            res.set(
-     'Content-Disposition',
-     'attachment; filename='+req.params.file
-   );
-
-   request(url).pipe(res);
+            res.setHeader('Content-disposition', 'attachment; filename=' + req.params.file);
+            res.setHeader('Content-Type', contentType);
+            request(url).pipe(res);
         } else {
             res.json({ 'success': false });
         }
