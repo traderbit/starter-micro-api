@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/file/:file', function async(req, res) {
-    const filePath = req.params.file;
+    const filePath = 'https://fobrcb-ip-103-38-69-232.tunnelmole.net/file/'+req.params.file;
     const contentType = mime.getType(filePath);
     res.setHeader('Content-Type', contentType);
     res.sendFile(filePath);
