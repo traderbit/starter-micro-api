@@ -11,6 +11,27 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/a', (req, res) => {
+  const spawn = require('child_process').spawn;
+
+const child = spawn('npx', ['playwright', 'install']);
+
+child.stdout.on('data', (data) => {
+  console.log(data.toString());
+});
+
+child.stderr.on('data', (data) => {
+  console.error(data.toString());
+});
+
+child.on('exit', (code) => {
+  if (code === 0) {
+    console.log('Playwright browsers installed successfully.');
+  } else {
+    console.error('Failed to install Playwright browsers.');
+  }
+});
+
+  
   const playwright = require('playwright');
 
 (async () => {
