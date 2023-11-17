@@ -11,6 +11,17 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/a', (req, res) => {
+  const playwright = require('playwright');
+
+(async () => {
+  const browser = await playwright.chromium.launch();
+  const page = await browser.newPage();
+  await page.goto('https://example.com');
+  const sourceCode = await page.evaluate(() => document.documentElement.outerHTML);
+  res.send('Hello World!'+sourceCode);
+  await browser.close();
+})();
+
   res.send('Hello World!'+API)
 })
 
